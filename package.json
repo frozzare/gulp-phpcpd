@@ -1,0 +1,33 @@
+{
+  "name": "gulp-phpcpd",
+  "version": "1.0.0",
+  "description": "Gulp plugin for running PHP Copy/Paste Detector (PHPCPD)",
+  "license": "MIT",
+  "repository": "frozzare/gulp-phpcpd",
+  "author": {
+    "name": "Fredrik Forsmo",
+    "email": "fredrik.forsmo@gmail.com",
+    "url": "forsmo.me"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.4",
+    "through2": "^0.6.5"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "babel-eslint": "^3.0",
+    "eslint": "*"
+  }
+}
