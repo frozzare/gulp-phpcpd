@@ -16,7 +16,7 @@ var gulp   = require('gulp');
 var phpcpd = require('gulp-phpcpd');
 
 gulp.task('default', function () {
-	return gulp.src('/path/to/dir')
+	return gulp.src('/path/to/src/*/**.php')
 		.pipe(phpcpd());
 });
 ```

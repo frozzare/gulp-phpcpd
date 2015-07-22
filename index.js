@@ -102,6 +102,7 @@ function buildCommand(options, dir) {
 
 module.exports = function (options) {
 	return through.obj(function (file, enc, cb) {
+console.log(file.base,file.path);
 		if (file.isNull()) {
 			cb(null, file);
 			return;
