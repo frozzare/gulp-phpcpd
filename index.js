@@ -4,9 +4,10 @@
  * Require modules.
  */
 
-var gutil   = require('gulp-util');
-var through = require('through2');
-var exec    = require('child_process').exec;
+var gutil       = require('gulp-util');
+var through     = require('through2');
+var exec        = require('child_process').exec;
+var objectMerge = require('object-merge');
 
 /**
  * PHPCPD default options.
@@ -23,30 +24,6 @@ var defaults = {
   quiet:        false,
   verbose:      false
 };
-
-/**
- * Merge two objects into one object.
- *
- * @param {object} obj1
- * @param {object} obj2
- *
- * @return {object}
- */
-
-function merge(obj1, obj2) {
-  var obj3 = {};
-  obj2 = obj2 || {};
-
-  for (var key in obj1) {
-    obj3[key] = obj1[key];
-
-    if (obj2[key] !== undefined) {
-      obj3[key] = obj2[key];
-    }
-  }
-
-  return obj3;
-}
 
 /**
  * Build command.
@@ -112,7 +89,7 @@ module.exports = function (options) {
       return;
     }
 
-    options = merge(defaults, options);
+    options = objectMerge(defaults, options);
 
     var self = this;
     var cmd  = buildCommand(options, file.base);
