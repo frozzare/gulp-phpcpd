@@ -13,15 +13,15 @@ var exec    = require('child_process').exec;
  */
 
 var defaults = {
-	bin:          'phpcpd',
-	exclude:      false,
-	minLines:     5,
-	minTokens:    70,
-	names:        '*.php',
-	namesExclude: false,
-	reportFile:   false,
-	quiet:        false,
-	verbose:      false
+  bin:          'phpcpd',
+  exclude:      false,
+  minLines:     5,
+  minTokens:    70,
+  names:        '*.php',
+  namesExclude: false,
+  reportFile:   false,
+  quiet:        false,
+  verbose:      false
 };
 
 /**
@@ -34,18 +34,18 @@ var defaults = {
  */
 
 function merge(obj1, obj2) {
-	var obj3 = {};
-	obj2 = obj2 || {};
+  var obj3 = {};
+  obj2 = obj2 || {};
 
-	for (var key in obj1) {
-		obj3[key] = obj1[key];
+  for (var key in obj1) {
+    obj3[key] = obj1[key];
 
-		if (obj2[key] !== undefined) {
-			obj3[key] = obj2[key];
-		}
-	}
+    if (obj2[key] !== undefined) {
+      obj3[key] = obj2[key];
+    }
+  }
 
-	return obj3;
+  return obj3;
 }
 
 /**
@@ -58,38 +58,38 @@ function merge(obj1, obj2) {
  */
 
 function buildCommand(options, dir) {
-	var cmd = options.bin;
+  var cmd = options.bin;
 
-	if (options.reportFile) {
-		cmd += ' --log-pmd ' + options.reportFile;
-	}
+  if (options.reportFile) {
+    cmd += ' --log-pmd ' + options.reportFile;
+  }
 
-	cmd += ' --min-lines ' + options.minLines;
-	cmd += ' --min-tokens ' + options.minTokens;
+  cmd += ' --min-lines ' + options.minLines;
+  cmd += ' --min-tokens ' + options.minTokens;
 
-	if (options.exclude instanceof Array) {
-		for (var i = 0, l = options.exclude; i < l; i++) {
-			cmd += ' --exclude ' + options.exclude[i];
-		}
-	} else {
-		cmd += ' --exclude ' + options.exclude;
-	}
+  if (options.exclude instanceof Array) {
+    for (var i = 0, l = options.exclude; i < l; i++) {
+      cmd += ' --exclude ' + options.exclude[i];
+    }
+  } else {
+    cmd += ' --exclude ' + options.exclude;
+  }
 
-	cmd += ' --names \"' + options.names + '\"';
+  cmd += ' --names \"' + options.names + '\"';
 
-	if (options.namesExclude) {
-		cmd += ' --names-exclude \"' + options.namesExclude + '\"';
-	}
+  if (options.namesExclude) {
+    cmd += ' --names-exclude \"' + options.namesExclude + '\"';
+  }
 
-	if (options.quiet) {
-		cmd += ' --quiet';
-	}
+  if (options.quiet) {
+    cmd += ' --quiet';
+  }
 
-	if (options.verbose) {
-		cmd += ' --verbose';
-	}
+  if (options.verbose) {
+    cmd += ' --verbose';
+  }
 
-	return cmd + ' ' + dir;
+  return cmd + ' ' + dir;
 }
 
 /**
@@ -101,28 +101,28 @@ function buildCommand(options, dir) {
  */
 
 module.exports = function (options) {
-	return through.obj(function (file, enc, cb) {
-		if (file.isNull()) {
-			cb(null, file);
-			return;
-		}
+  return through.obj(function (file, enc, cb) {
+    if (file.isNull()) {
+      cb(null, file);
+      return;
+    }
 
-		if (file.isStream()) {
-			cb(new gutil.PluginError('gulp-phpcpd', 'Streaming not supported'));
-			return;
-		}
+    if (file.isStream()) {
+      cb(new gutil.PluginError('gulp-phpcpd', 'Streaming not supported'));
+      return;
+    }
 
-		options = merge(defaults, options);
+    options = merge(defaults, options);
 
-		var self = this;
-		var cmd  = buildCommand(options, file.base);
+    var self = this;
+    var cmd  = buildCommand(options, file.base);
 
-		exec(cmd, function (error, stdout, stderr) {
-			if (stderr) {
-				self.emit('error', new gutil.PluginError('gulp-phpcpd', stderr));
-			} else if (stdout) {
-				gutil.log(stdout);
-			}
-		});
-	});
+    exec(cmd, function (error, stdout, stderr) {
+      if (stderr) {
+        self.emit('error', new gutil.PluginError('gulp-phpcpd', stderr));
+      } else if (stdout) {
+        gutil.log(stdout);
+      }
+    });
+  });
 };
