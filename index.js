@@ -89,7 +89,7 @@ module.exports = function (options) {
       return;
     }
 
-    options = objectMerge(defaults, options);
+    options = objectMerge(defaults, options || {});
 
     var self = this;
     var cmd  = buildCommand(options, file.base);
