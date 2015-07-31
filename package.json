@@ -1,6 +1,6 @@
 {
   "name": "gulp-phpcpd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gulp plugin for running PHP Copy/Paste Detector (PHPCPD)",
   "license": "MIT",
   "repository": "frozzare/gulp-phpcpd",
