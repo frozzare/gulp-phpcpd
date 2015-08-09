@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "eslint": "^1.1.0",
-    "eslint-config-xo-multi-space": "^1.0.0",
+    "eslint-config-xo-multi-spaces": "^1.0.0",
     "mocha": "*"
   },
   "eslintConfig": {
