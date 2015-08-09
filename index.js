@@ -90,13 +90,12 @@ module.exports = function (options) {
     }
 
     options = objectMerge(defaults, options || {});
-
-    var self = this;
-    var cmd  = buildCommand(options, file.base);
+    var cmd = buildCommand(options, file.base);
 
     exec(cmd, function (error, stdout, stderr) {
       if (stderr) {
-        self.emit('error', new gutil.PluginError('gulp-phpcpd', stderr));
+        cb(new gutil.PluginError('gulp-phpcpd', stderr));
+        return;
       } else if (stdout) {
         gutil.log(stdout);
       }

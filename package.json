@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "xo && mocha"
   },
   "files": [
     "index.js"
@@ -30,5 +30,16 @@
     "mocha": "*",
     "babel-eslint": "^3.0",
     "eslint": "*"
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "mocha"
+    ],
+    "rules": {
+      "key-spacing": 0,
+      "no-multi-spaces": 0,
+      "indent": [2, 2, {"SwitchCase": 1}]
+    }
   }
 }
