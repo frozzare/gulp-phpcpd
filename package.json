@@ -27,18 +27,11 @@
     "through2": "^0.6.5"
   },
   "devDependencies": {
-    "mocha": "*",
-    "xo": "*"
+    "eslint": "^1.1.0",
+    "eslint-config-xo-multi-space": "^1.0.0",
+    "mocha": "*"
   },
-  "xo": {
-    "envs": [
-      "node",
-      "mocha"
-    ],
-    "rules": {
-      "key-spacing": 0,
-      "no-multi-spaces": 0,
-      "indent": [2, 2, {"SwitchCase": 1}]
-    }
+  "eslintConfig": {
+    "extends": "xo-multi-space"
   }
 }
