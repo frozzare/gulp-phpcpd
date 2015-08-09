@@ -32,6 +32,6 @@
     "mocha": "*"
   },
   "eslintConfig": {
-    "extends": "xo-multi-space"
+    "extends": "xo-multi-spaces"
   }
 }
